@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <string.h>
+#include <string.h>
+#include <ctype.h>
 
 int main()
 {
@@ -22,6 +24,14 @@ int main()
 
     if (n > 0) m++;
     printf ("words: %d\n", m);
+
+    s[0] = toupper(s[0]);
+	for(int i = 0; i < n; i++)
+	{
+        if (s[i-1] == ' ') s[i] = toupper(s[i]);
+	}
+
+    printf("%s\n", s);
 
     return 0;
 }
