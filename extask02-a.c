@@ -1,50 +1,77 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+#define max_lastname 50
+#define num_marks 3
+#define mark_min 2
+#define mark_max 5
+
+struct element
+{
+    char lastname[max_lastname];
+    int marks[num_marks];
+    struct element *prev;
+    struct element *next;
+};
+
+struct element *first = NULL;
+struct element *last = NULL;
 
 int main()
 {
-#define months 12
-int salary[months];
+    FILE *f = fopen("extask02-a.txt", "r");
+    while(1)
+    {
+        char lastname[max_lastname];
+        if(fscanf(f, "%s", lastname) != 1) break;
 
-#define salary_low 1000
-#define salary_high 5000
+        struct element *e = (struct element *)malloc(sizeof(struct element));
+        if(last == NULL)
+        {
+            e->prev = NULL;
+            e->next = NULL;
+            first = e;
+            last = e;
+        }
+        else
+        {
+            last->next = e;
+            e->prev = last;
+            e->next = NULL;
+            last = e;
+        }
 
-for(int i = 0; i < months; i++)
-{
-	salary[i] = salary_low + rand() % (salary_high - salary_low + 1);
-}
+        stpcpy(e->lastname, lastname);
+        for(int i = 0; i < num_marks; i++)
+            e->marks[i] = mark_min + rand() % (mark_max - mark_min + 1);
 
-for(int i = 0; i < months; i++)
-{
-	printf("% 6d", (i + 1));
-}
-printf("\n");
+    }
+    fclose(f);
 
-for(int i = 0; i < months; i++)
-{
-	printf("% 6d", salary[i]);
-}
-printf("\n");
+    struct element *current = first;
+    while(current != NULL)
+    {
+        printf("%s", current->lastname);
+        for(int i = 0; i < num_marks; i++)
+            printf(" %d", current->marks[i]);
+        printf("\n");
 
-float year_tax = 0.0f;
-for(int i = 0; i < months; i++)
-{
-	float tax = salary[i] * 0.02f;
-	printf("% 6.1f", tax);
-}
-printf("\n");
+        current = current->next;
+    }
 
-int year_sum = 0;
-for(int i = 0; i < months; i++)
-{
-	year_sum += salary[i];
-}
-printf("year_sum = %d\n", year_sum);
+    printf("\n");
 
-float year_avg = year_sum / (float) months;
-printf("year_avg = %.2f\n", year_avg);
-printf("year_tax = %.2f\n", year_tax);
+    current = last;
+    while(current != NULL)
+    {
+        printf("%s", current->lastname);
+        for(int i = 0; i < num_marks; i++)
+            printf(" %d", current->marks[i]);
+        printf("\n");
 
+        current = current->prev;
+    }
 
-return 0;
+    return 0;
 }
