@@ -14,8 +14,9 @@ struct record row[n];
 
 int main()
 {
-    FILE *file;
-    file = fopen("extask16.txt", "w");
+    FILE *fileb;
+    fileb = fopen("extask16.raw", "wb");
+
     for(int i = 0; i < n; i++)
     {
         scanf("%s %s %d %d",
@@ -24,18 +25,23 @@ int main()
     }
 
     printf("\n");
-    printf("name\tindics\texp\tyear\n");
 
-    fprintf(file, "name\tindics\texp\tyear\n");
+    printf("name\tindics\texp\tyear\n");
 
     for(int i = 0; i < n; i++)
     {
-        fprintf(file, "%s\t%s\t%d\t%d\n",
+        printf("%s\t%s\t%d\t%d\n",
                 row[i].drug_name, row[i].indications,
                 row[i].exp_years, row[i].mfg_year);
     }
-    fclose(file);
+
+    //fwrite(fileb, "name\tindics\texp\tyear\n");
+    for(int i = 0; i < n; i++)
+    {
+    fwrite(&row, sizeof(row), 1, fileb);
+    }
+
+    fclose(fileb);
 
     return 0;
 }
-

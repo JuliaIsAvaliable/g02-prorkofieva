@@ -3,7 +3,7 @@
 
 int a1, b1;
 int a2, b2;
-
+int a3, b3;
 void input1()
 {
 	printf("[1] a|b: ");
@@ -24,30 +24,53 @@ void print()
 
 void add()
 {
-	int a3 = a1 * b2 + a2 * b1;
-	int b3 = b1 * b2;
+	 a3 = a1 * b2 + a2 * b1;
+	 b3 = b1 * b2;
 	printf("%d / %d", a3, b3);
 }
 
 void subtruct()
 {
-	int a3 = a1 * b2 - a2 * b1;
-	int b3 = b1 * b2;
+	 a3 = a1 * b2 - a2 * b1;
+	 b3 = b1 * b2;
 	printf("%d / %d", a3, b3);
 }
+
 void multiplication()
 {
-    int a3 = a1 * a2;
-    int b3 = b1 * b2;
+     a3 = a1 * a2;
+     b3 = b1 * b2;
     printf("%d / %d", a3, b3);
 }
 
 void division()
 {
-    int a3 = a1 * b2;
-    int b3 = b1 * a2;
+     a3 = a1 * b2;
+     b3 = b1 * a2;
     printf("%d / %d", a3, b3);
 }
+
+void reduction()
+{int c=5;
+int a,b;
+a=a3;
+b=b3;
+   
+    while(c!=0)
+	{if (a>=b){
+	 c =a-b;
+	 if (c!=0) 
+	 a=c;}
+else {a=a+b;
+b=a-b;
+a=a-b;
+}
+	    
+	}
+b3=b3/b;
+a3=a3/b;
+
+printf("%d / %d", a3, b3);}
 int main()
 {
 int choice;
@@ -62,6 +85,7 @@ do
 	printf("5 - subtract\n");
     printf("6 - multiplication\n");
     printf("7 - division\n");
+	printf("8 - reduction\n");
 	printf("choice: ");
 
 	scanf("%d", &choice);
@@ -76,6 +100,7 @@ do
 		case 5: subtruct(); break;
         case 6: multiplication(); break;
         case 7: division(); break;
+case 8: reduction();break;
 	}
     printf("\n");
 
