@@ -20,7 +20,7 @@ struct element *last = NULL;
 
 int main()
 {
-    FILE *f = fopen("extask02-a.txt", "r");
+    FILE *f = fopen("extask02.txt", "r");
     while(1)
     {
         char lastname[max_lastname];
