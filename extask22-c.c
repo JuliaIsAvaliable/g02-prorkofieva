@@ -72,9 +72,7 @@ p = strchr(query, '\r');
 if(p != NULL) *p = 0;
 
 for(int i = 0; i < row_count; i++)
-{
     if(strcmp(row[i].title, query) == 0) puts(row[i].mfg);
-}
 printf("1 записать в бинарный файл\n2 считывание из бинарного файла\n3 записать в текстовый файл\n4 поиск\n0 выход\n");
 break;
 }
