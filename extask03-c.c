@@ -58,16 +58,10 @@ printf("t4 = %f, t5 = %f\n", t4, t5);*/
     
         float G = fabs(t2-t1);
         if(fabs(t2-t1)<=eps)
-
         break;
-
         printf("%f %f %f\n", t3, x, y3);
-
-
     }
-
     t=t3;
     printf("t = %f, x = %f, y = %f\n", t, x, y3);
-
 return 0;
 }
